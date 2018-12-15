@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>line</title>
+</head>
+<body>
+    
+        <script src="https://threejs.org/build/three.js"></script>
+        <script>
+            let scene = new THREE.Scene();
+            let camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
+            let renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            camera.position.set(0, 0, 100);
+            camera.lookAt(0,0,0);
+
+            let geometry = new THREE.Geometry();
+            geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
+            geometry.vertices.push(new THREE.Vector3(0, -10, 0));
+            geometry.vertices.push(new THREE.Vector3(10, 0, 0));
+
+            let material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+            let line = new THREE.Line(geometry, material);
+
+            scene.add(line);
+
+            renderer.render(scene, camera);
+
+
+        </script>
+</body>
+</html>

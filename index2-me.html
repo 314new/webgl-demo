@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<body>
+    
+    <script src="https://threejs.org/build/three.js"></script>
+    <script>   
+        var scene = new THREE.Scene(); //场景
+        var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 ); //摄像机
+        var renderer  = new THREE.WebGLRenderer();  //渲染器
+
+        renderer.setSize(window.innerWidth, window.innerHeight); //原尺寸，一半的分辨率
+        document.body.appendChild(renderer.domElement); //渲染器将场景展示出去
+
+        //创建立方体
+        var geometry = new THREE.BoxGeometry(1, 1, 1)   //立方体的点与面的信息
+        var material = new THREE.MeshBasicMaterial({color: 0xfd59d7});  //立方体的材料信息
+        var cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+        
+        
+    </script>
+</body>
+</html>
